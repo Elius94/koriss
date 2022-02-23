@@ -35,7 +35,7 @@ const styles = (theme: Theme) =>
 
 function ProductHero(props: WithStyles<typeof styles>) {
   const { classes } = props;
-
+  
   return (
     <ProductHeroLayout backgroundClassName={classes.background}>
       {/* Increase the network loading priority of the background image. */}
@@ -45,7 +45,7 @@ function ProductHero(props: WithStyles<typeof styles>) {
         alt="increase priority"
       />
       <Typography color="inherit" align="center" variant="h2" marked="center">
-        Dott.ssa. Martina Koriss 
+        Dott.ssa. Martina Muzzi
       </Typography>
       <Typography
         color="inherit"
@@ -53,7 +53,7 @@ function ProductHero(props: WithStyles<typeof styles>) {
         variant="h5"
         className={classes.h5}
       >
-        Psicologa specializzata in psicologia genitoriale e familiare.
+        <b>Psicologa</b> specializzata in psicologia genitoriale e familiare.
       </Typography>
       <Button
         color="secondary"
@@ -73,3 +73,4 @@ function ProductHero(props: WithStyles<typeof styles>) {
 }
 
 export default withStyles(styles)(ProductHero);
+

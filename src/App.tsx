@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Privacy from "./onepirate/Privacy";
 import Contact from "./onepirate/Contact";
 import Terms from "./onepirate/Terms";
-import Checkbox from "@material-ui/core/Checkbox";
 
 function App() {
   return (

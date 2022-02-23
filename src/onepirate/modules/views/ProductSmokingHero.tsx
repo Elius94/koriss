@@ -6,6 +6,7 @@ import { WithStyles } from '@mui/styles';
 import withStyles from '@mui/styles/withStyles';
 import createStyles from '@mui/styles/createStyles';
 import Typography from "../components/Typography";
+import { Link as RouterLink } from "react-router-dom";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -36,13 +37,16 @@ function ProductSmokingHero(props: WithStyles<typeof styles>) {
 
   return (
     <Container className={classes.root} component="section">
-      <Button className={classes.button}>
+      <Button
+        className={classes.button}
+        component={RouterLink}
+        to="/contattami/" >
         <Typography variant="h4" component="span">
-          Got any questions? Need help?
+          Qualche domanda? Pensi di aver bisogno di aiuto?
         </Typography>
       </Button>
       <Typography variant="subtitle1" className={classes.link}>
-        We are here to help. Get in touch!
+        Contattami ed cercheremo la soluzione per te.
       </Typography>
       <img src="/producBuoy.svg" className={classes.buoy} alt="buoy" />
     </Container>

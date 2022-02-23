@@ -1,7 +1,6 @@
 import withRoot from "./modules/withRoot";
 // --- Post bootstrap -----
 import React from "react";
-import makeStyles from '@mui/styles/makeStyles';
 import Typography from "./modules/components/Typography";
 import AppFooter from "./modules/views/AppFooter";
 import AppAppBar from "./modules/views/AppAppBar";
@@ -15,21 +14,8 @@ import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import { Call, EmailRounded } from "@material-ui/icons";
 
-const useStyles = makeStyles((theme) => ({
-  form: {
-    marginTop: theme.spacing(6),
-  },
-  button: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(2),
-  },
-  feedback: {
-    marginTop: theme.spacing(2),
-  },
-}));
 
 function Contact() {
-  const classes = useStyles();
 
   return (
     <React.Fragment>

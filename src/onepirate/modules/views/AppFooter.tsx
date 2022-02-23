@@ -6,6 +6,7 @@ import Link from "@mui/material/Link";
 import Container from "@mui/material/Container";
 import Typography from "../components/Typography";
 import Iubenda from 'react-iubenda-policy'
+import { Gavel, LinkedIn } from "@material-ui/icons";
 
 function Copyright() {
   return (
@@ -59,17 +60,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const LANGUAGES = [
-  {
-    code: "en-US",
-    name: "English",
-  },
-  {
-    code: "fr-FR",
-    name: "Français",
-  },
-];
-
 export default function AppFooter() {
   const classes = useStyles();
   const myPolicy = 70817588
@@ -87,14 +77,14 @@ export default function AppFooter() {
               spacing={2}
             >
               <Grid item className={classes.icons}>
-                <a href="https://material-ui.com/" className={classes.icon}>
-                  <img src="/appFooterFacebook.png" alt="Facebook" />
+                <a href="https://it.linkedin.com/in/martina-muzzi-a80a94227" className={classes.icon}>
+                  <LinkedIn color="action"/>
                 </a>
                 <a
-                  href="https://twitter.com/MaterialUI"
+                  href="https://www.ordinepsicologier.it/it/albo/10319a-martina-muzzi"
                   className={classes.icon}
                 >
-                  <img src="/appFooterTwitter.png" alt="Twitter" />
+                  <Gavel color="action"/>
                 </a>
               </Grid>
               <Grid item>
@@ -121,6 +111,35 @@ export default function AppFooter() {
                 <Link href="#" className="iubenda-cs-preferences-link">Aggiorna le tue preferenze</Link>
               </li>
             </ul>
+          </Grid>
+          <Grid item>
+            <Typography variant="h6" marked="left" gutterBottom>
+              Riferimenti
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary">
+              Studio Milò, in via delle Rimembranze 9, San Lazzaro (BO)
+            </Typography>
+            {/*<Typography variant="subtitle1" color="textSecondary">
+              P.IVA 02398410001
+            </Typography>*/}
+            <Typography variant="subtitle1" color="textSecondary">
+              Tel. 
+              <Link href="tel:+393347156936">
+                3347156936
+              </Link>
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary">
+              Email: 
+              <Link href="mailto:info@martinamuzzipsicologa.it">
+                info@martinamuzzipsicologa.it
+              </Link>
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary">
+              Iscritta all'
+              <Link href="https://www.ordinepsicologier.it/it/albo/10319a-martina-muzzi">
+                Ordine degli Psicologi
+              </Link>
+            </Typography>
           </Grid>
           <Grid item>
             <Typography variant="caption">

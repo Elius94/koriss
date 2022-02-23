@@ -149,7 +149,7 @@ function ProductCategories(props: WithStyles<typeof styles>) {
   return (
     <Container className={classes.root} component="section">
       <Typography variant="h4" marked="center" align="center" component="h2">
-        For all tastes and all desires
+        Immagini dal mio studio
       </Typography>
       <div className={classes.images}>
         {images.map((image) => (

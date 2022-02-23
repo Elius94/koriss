@@ -7,9 +7,18 @@ import Grid from "@mui/material/Grid";
 import Hidden from "@mui/material/Hidden";
 import Container from "@mui/material/Container";
 import Typography from "../components/Typography";
-import TextField from "../components/TextField";
 import Snackbar from "../components/Snackbar";
-import Button from "../components/Button";
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import L from 'leaflet';
+let DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -38,6 +47,18 @@ const styles = (theme: Theme) =>
     button: {
       width: "100%",
     },
+    item: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "left",
+      padding: theme.spacing(1, 5),
+    },
+    number: {
+      fontSize: 24,
+      fontFamily: theme.typography.fontFamily,
+      color: theme.palette.secondary.main,
+      fontWeight: theme.typography.fontWeightMedium,
+    },
     imagesWrapper: {
       position: "relative",
     },
@@ -59,16 +80,16 @@ const styles = (theme: Theme) =>
       width: "100%",
       maxWidth: 600,
     },
+    map: {
+      width: "100%",
+      height: "92%",
+    },
   });
 
 function ProductCTA(props: WithStyles<typeof styles>) {
   const { classes } = props;
   const [open, setOpen] = React.useState(false);
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setOpen(true);
-  };
+  const [position/*, setPosition*/] = React.useState<any>([44.46917165365001, 11.40598871506287]);
 
   const handleClose = () => {
     setOpen(false);
@@ -79,37 +100,48 @@ function ProductCTA(props: WithStyles<typeof styles>) {
       <Grid container>
         <Grid item xs={12} md={6} className={classes.cardWrapper}>
           <div className={classes.card}>
-            <form onSubmit={handleSubmit} className={classes.cardContent}>
+            <div className={classes.cardContent}>
               <Typography variant="h2" component="h2" gutterBottom>
-                Receive offers
+                Come ricevo
               </Typography>
-              <Typography variant="h5">
-                Taste the holidays of the everyday close to home.
-              </Typography>
-              <TextField
-                noBorder
-                className={classes.textField}
-                placeholder="Your email"
-              />
-              <Button
-                type="submit"
-                color="primary"
-                variant="contained"
-                className={classes.button}
-              >
-                Keep me updated
-              </Button>
-            </form>
+              <div className={classes.item}>
+                <div className={classes.number}>1.</div>
+                <Typography variant="h5">
+                  Ricevo presso lo Studio Milò, in via delle Rimembranze 9, San Lazzaro (BO),
+                  il <b>mercoledì</b> e il <b>giovedì</b> dalle <b>7:30</b> alle <b>12:30</b>.
+                </Typography>
+              </div>
+              <div className={classes.item}>
+                <div className={classes.number}>2.</div>
+                <Typography variant="h5">
+                  Seduta remota tramite <b>Google Meet</b>.
+                </Typography>
+              </div>
+              <div className={classes.item}>
+                <div className={classes.number}>3.</div>
+                <Typography variant="h5">
+                  Direttamente a <b>domicilio</b>.
+                </Typography>
+              </div>
+            </div>
           </div>
         </Grid>
         <Grid item xs={12} md={6} className={classes.imagesWrapper}>
           <Hidden xlDown>
             <div className={classes.imageDots} />
-            <img
-              src="https://images.unsplash.com/photo-1527853787696-f7be74f2e39a?auto=format&fit=crop&w=750&q=80"
-              alt="call to action"
-              className={classes.image}
-            />
+            <div className={classes.image}>
+              <MapContainer center={position} zoom={15} className={classes.map}>
+                <TileLayer
+                  attribution='&amp;copy <a href="https://www.thunderforest.com/">Thunderforest</a>'
+                  url="https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=43d136d38a064b11925be75e32fc86fa"
+                />
+                <Marker position={position}>
+                  <Popup>
+                    via delle Rimembranze 9, San Lazzaro (BO).
+                  </Popup>
+                </Marker>
+              </MapContainer>
+            </div>
           </Hidden>
         </Grid>
       </Grid>
