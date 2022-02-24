@@ -1,187 +1,184 @@
-import React from "react";
-import { Theme } from "@mui/material/styles";
-import { WithStyles } from '@mui/styles';
-import withStyles from '@mui/styles/withStyles';
-import createStyles from '@mui/styles/createStyles';
+import * as React from "react";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "../components/Typography";
-import { ButtonBase } from "@material-ui/core";
+import ButtonBase from "@mui/material/ButtonBase";
+import Markdown from "../components/Markdown";
+import { useEffect, useState } from "react";
+import { Parallax } from "react-scroll-parallax";
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: "flex",
-      backgroundColor: theme.palette.secondary.light,
-      overflow: "hidden",
-    },
-    container: {
-      marginTop: theme.spacing(10),
-      marginBottom: theme.spacing(15),
-      position: "relative",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-    },
-    title: {
-      marginBottom: theme.spacing(4),
-    },
-    item: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      padding: theme.spacing(0, 5),
-    },
-    red: {
-      fontSize: 24,
-      fontFamily: theme.typography.fontFamily,
-      color: theme.palette.secondary.main,
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    profilePic: {
-      height: 500,
-      zIndex: 1,
-      marginTop: theme.spacing(4),
-      marginBottom: theme.spacing(4),
-    },
-    curvyLines: {
-      pointerEvents: "none",
-      position: "absolute",
-      top: -180,
-      opacity: 0.7,
-    },
-    button: {
-      marginTop: theme.spacing(8),
-    },
-    imageWrapper: {
-      position: "relative",
-      display: "block",
-      padding: 0,
-      borderRadius: 0,
-      height: "40vh",
-      [theme.breakpoints.down('xl')]: {
-        width: "100% !important",
-        height: 100,
-      },
-      "&:hover": {
-        zIndex: 1,
-      },
-      "&:hover $imageBackdrop": {
-        opacity: 0.15,
-      },
-      "&:hover $imageMarked": {
-        opacity: 0,
-      },
-      "&:hover $imageTitle": {
-        border: "4px solid currentColor",
-      },
-    },
-    imageButton: {
-      position: "absolute",
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      color: theme.palette.common.white,
-    },
-    imageSrc: {
-      position: "absolute",
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      backgroundSize: "cover",
-      backgroundPosition: "center 40%",
-    },
-    imageBackdrop: {
-      position: "absolute",
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      background: theme.palette.common.black,
-      opacity: 0.5,
-      transition: theme.transitions.create("opacity"),
-    },
-    imageTitle: {
-      position: "relative",
-      padding: `${theme.spacing(2)} ${theme.spacing(4)} 14px`,
-    },
-    imageMarked: {
-      height: 3,
-      width: 18,
-      background: theme.palette.common.white,
-      position: "absolute",
-      bottom: -2,
-      left: "calc(50% - 9px)",
-      transition: theme.transitions.create("opacity"),
-    },
+const ImageBackdrop = styled("div")(({ theme }) => ({
+  position: "absolute",
+  left: 0,
+  right: 0,
+  top: 0,
+  bottom: 0,
+  background: "#000",
+  opacity: 0.5,
+  transition: theme.transitions.create("opacity"),
+}));
+
+const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
+  position: "relative",
+  display: "block",
+  padding: 0,
+  borderRadius: 0,
+  height: "40vh",
+  zIndex: 1,
+  [theme.breakpoints.down("md")]: {
+    width: "100% !important",
+    height: 100,
+  },
+  "&:hover": {
+    zIndex: 2,
+  },
+  "&:hover .imageBackdrop": {
+    opacity: 0.15,
+  },
+  "&:hover .imageMarked": {
+    opacity: 0,
+  },
+  "&:hover .imageTitle": {
+    border: "4px solid currentColor",
+  },
+  "& .imageTitle": {
+    position: "relative",
+    padding: `${theme.spacing(2)} ${theme.spacing(4)} 14px`,
+  },
+  "& .imageMarked": {
+    height: 3,
+    width: 18,
+    background: theme.palette.common.white,
+    position: "absolute",
+    bottom: -2,
+    left: "calc(50% - 9px)",
+    transition: theme.transitions.create("opacity"),
+  },
+}));
+
+const number = {
+  fontSize: 24,
+  fontFamily: "default",
+  color: "secondary.main",
+  fontWeight: "medium",
+};
+
+function ProductHowItWorks() {
+  const [markdown, setMarkdown] = useState("");
+
+  // https://github.com/webpack/webpack/issues/6680
+  useEffect(() => {
+    import("./texts/biography.md")
+      .then((content) => fetch(content.default))
+      .then((response) => response.text())
+      .then((responseText) => setMarkdown(responseText));
   });
 
-function ProductHowItWorks(props: WithStyles<typeof styles>) {
-  const { classes } = props;
-
   return (
-    <section className={classes.root}>
-      <Container className={classes.container}>
-        <img
+    <Box
+      component="section"
+      sx={{ display: "flex", bgcolor: "secondary.light", overflow: "hidden" }}
+    >
+      <Container
+        sx={{
+          mt: 10,
+          mb: 15,
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Box
+          component="img"
           src="/productCurvyLines.png"
-          className={classes.curvyLines}
           alt="curvy lines"
+          sx={{
+            pointerEvents: "none",
+            position: "absolute",
+            top: -180,
+            opacity: 0.7,
+          }}
         />
-        <Typography
-          variant="h4"
-          marked="center"
-          className={classes.title}
-          component="h2"
-        >
+        <Typography variant="h4" marked="center" component="h2" sx={{ mb: 14 }}>
           Chi sono?
         </Typography>
-        <div className={classes.item}>
+        <div>
           <Grid container spacing={5}>
             <Grid item xs={12} md={6}>
-              <ButtonBase
+              <ImageIconButton
                 key={"Martina"}
-                className={classes.imageWrapper}
                 style={{
                   width: "100%",
                 }}
               >
-                <div
-                  className={classes.imageSrc}
-                  style={{
+                <Box
+                  sx={{
+                    position: "absolute",
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center 40%",
                     backgroundImage: `url(/DSC_0655.JPG)`,
                   }}
                 />
-                <div className={classes.imageBackdrop} />
-                <div className={classes.imageButton}>
+                <ImageBackdrop className="imageBackdrop" />
+                <Box
+                  sx={{
+                    position: "absolute",
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "common.white",
+                  }}
+                >
                   <Typography
                     component="h3"
                     variant="h6"
                     color="inherit"
-                    className={classes.imageTitle}
+                    className="imageTitle"
                   >
                     {"Martina"}
-                    <div className={classes.imageMarked} />
+                    <div className={"imageMarked"} />
                   </Typography>
-                </div>
-              </ButtonBase>
+                </Box>
+              </ImageIconButton>
             </Grid>
             <Grid item xs={12} md={6}>
-              <div className={classes.red}>Mi presento.</div>
-              <Typography variant="h5">
-                {"Sono la dott.ssa Martina Muzzi, psicologa laureata al corso di laurea Psicologia Scolastica e di Comunità dell’università di Bologna, e abilitata all’ordine degli psicologi dell’Emilia-Romagna. "}
-                {"I miei studi e le esperienze, sia universitarie che successive, si sono concentrate in particolare sulle tematiche relative all’infanzia (orientamento e psicologia scolastica, disturbi dell’apprendimento, "}
-                {"psicologia clinica dello sviluppo) e quelle erelative alla genitorialità."}
-              </Typography>
+              <Box component="div" sx={number}>Mi presento.</Box>
+              <Markdown>{markdown}</Markdown>
             </Grid>
           </Grid>
         </div>
       </Container>
-    </section>
+      <Parallax
+        translateX={['-400px', '50px']}
+        scale={[0.45, 0.65]}
+        rotate={[-180, 0]}
+        easing="easeInOutQuint"
+        style={{ position: "absolute", opacity: 0.7, zIndex: 0 }}
+      >
+        <Box component="img" src="/raccoon_cute.png" alt="un korino" />
+      </Parallax>
+      {/*<Parallax
+        translateX={[`${window.innerWidth - 150}px`, `${window.innerWidth - 400}px`]}
+        scale={[0.45, 0.65]}
+        rotate={[-80, -90]}
+        easing="easeInOutCubic"
+        style={{ position: "absolute", opacity: 0.6 }}
+      >
+        <Box component="img" src="/ciao.png" alt="manina" />
+      </Parallax>*/}
+    </Box>
   );
 }
-export default withStyles(styles)(ProductHowItWorks);
+
+export default ProductHowItWorks;

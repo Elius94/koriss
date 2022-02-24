@@ -1,43 +1,16 @@
-import React from "react";
-import { Theme } from "@mui/material/styles";
-import { WithStyles } from '@mui/styles';
-import withStyles from '@mui/styles/withStyles';
-import createStyles from '@mui/styles/createStyles';
+import * as React from "react";
 import Button from "../components/Button";
 import Typography from "../components/Typography";
 import ProductHeroLayout from "./ProductHeroLayout";
 import { Link as RouterLink } from "react-router-dom";
 
-const backgroundImage =
-  "./EL_03344.jpg";
+const backgroundImage = "./EL_03344.jpg";
 
-const styles = (theme: Theme) =>
-  createStyles({
-    background: {
-      backgroundImage: `url(${backgroundImage})`,
-      backgroundColor: "#7fc7d9", // Average color of the background image.
-      backgroundPosition: "center",
-    },
-    button: {
-      minWidth: 200,
-    },
-    h5: {
-      marginBottom: theme.spacing(4),
-      marginTop: theme.spacing(4),
-      [theme.breakpoints.up("sm")]: {
-        marginTop: theme.spacing(10),
-      },
-    },
-    more: {
-      marginTop: theme.spacing(2),
-    },
-  });
-
-function ProductHero(props: WithStyles<typeof styles>) {
-  const { classes } = props;
-  
+export default function ProductHero() {
   return (
-    <ProductHeroLayout backgroundClassName={classes.background}>
+    <ProductHeroLayout
+      bgImage={backgroundImage}
+    >
       {/* Increase the network loading priority of the background image. */}
       <img
         style={{ display: "none" }}
@@ -45,13 +18,13 @@ function ProductHero(props: WithStyles<typeof styles>) {
         alt="increase priority"
       />
       <Typography color="inherit" align="center" variant="h2" marked="center">
-        Dott.ssa. Martina Muzzi
+        Dott.ssa Martina Muzzi
       </Typography>
       <Typography
         color="inherit"
         align="center"
         variant="h5"
-        className={classes.h5}
+        sx={{ mb: 4, mt: { sx: 4, sm: 10 } }}
       >
         <b>Psicologa</b> specializzata in psicologia genitoriale e familiare.
       </Typography>
@@ -59,18 +32,15 @@ function ProductHero(props: WithStyles<typeof styles>) {
         color="secondary"
         variant="contained"
         size="large"
-        className={classes.button}
         component={RouterLink}
         to="/contattami/"
+        sx={{ minWidth: 200 }}
       >
         Contattami
       </Button>
-      <Typography variant="body2" color="inherit" className={classes.more}>
+      <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
         Scopri le mie offerte
       </Typography>
     </ProductHeroLayout>
   );
 }
-
-export default withStyles(styles)(ProductHero);
-

@@ -1,72 +1,41 @@
-import React from "react";
-import clsx from "clsx";
-import { Theme } from "@mui/material/styles";
-import withStyles from '@mui/styles/withStyles';
+import * as React from "react";
+import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import AppBar from "../components/AppBar";
-import Toolbar, { styles as toolbarStyles } from "../components/Toolbar";
+import Toolbar from "../components/Toolbar";
 import { Link as RouterLink, useLocation } from "react-router-dom";
-import { AppBarProps } from "@mui/material";
 
-import { WithStyles } from '@mui/styles';
+const rightLink = {
+  fontSize: 16,
+  color: "common.white",
+  ml: 3,
+};
 
-const styles = (theme: Theme) => ({
-  title: {
-    fontSize: 24,
-  },
-  placeholder: toolbarStyles(theme).root,
-  toolbar: {
-    justifyContent: "space-between",
-  },
-  left: {
-    flex: 1,
-  },
-  leftLinkActive: {
-    color: theme.palette.common.white,
-  },
-  right: {
-    flex: 1,
-    display: "flex",
-    justifyContent: "flex-end",
-  },
-  rightLink: {
-    fontSize: 16,
-    color: theme.palette.common.white,
-    marginLeft: theme.spacing(3),
-  },
-  linkSecondary: {
-    color: theme.palette.secondary.main,
-  },
-});
-
-function AppAppBar(props: WithStyles<typeof styles> & AppBarProps) {
-  const { classes } = props;
+function AppAppBar() {
   const location = useLocation();
-  console.log(location);
-
   return (
     <div>
       <AppBar position="fixed">
-        <Toolbar className={classes.toolbar}>
-          <div className={classes.left} />
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <Box sx={{ flex: 1 }} />
           <Link
             variant="h6"
             underline="none"
             color="inherit"
-            className={classes.title}
             component={RouterLink}
             to="/"
+            sx={{ fontSize: 24 }}
           >
             {"Martina Muzzi Psicologa"}
           </Link>
-          <div className={classes.right}>
+          <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
             {location.pathname === "/contattami/" ? (
               <Link
                 variant="h6"
                 underline="none"
-                className={clsx(classes.rightLink, classes.linkSecondary)}
                 component={RouterLink}
                 to="/"
+                sx={{ ...rightLink, color: "secondary.main" }}
               >
                 {"Home"}
               </Link>
@@ -74,19 +43,19 @@ function AppAppBar(props: WithStyles<typeof styles> & AppBarProps) {
               <Link
                 variant="h6"
                 underline="none"
-                className={clsx(classes.rightLink, classes.linkSecondary)}
                 component={RouterLink}
                 to="/contattami/"
+                sx={{ ...rightLink, color: "secondary.main" }}
               >
                 {"Contattami"}
               </Link>
             )}
-          </div>
+          </Box>
         </Toolbar>
       </AppBar>
-      <div className={classes.placeholder} />
+      <Toolbar />
     </div>
   );
 }
 
-export default withStyles(styles)(AppAppBar);
+export default AppAppBar;

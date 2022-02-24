@@ -1,12 +1,11 @@
-import React from "react";
-import { Theme } from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
+import * as React from "react";
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Container from "@mui/material/Container";
 import Typography from "../components/Typography";
+import { Gavel, LinkedIn } from "@mui/icons-material";
 import Iubenda from 'react-iubenda-policy'
-import { Gavel, LinkedIn } from "@material-ui/icons";
 
 function Copyright() {
   return (
@@ -17,100 +16,73 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: "flex",
-    backgroundColor: theme.palette.secondary.light,
+const iconStyle = {
+  width: 48,
+  height: 48,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "warning.main",
+  mr: 1,
+  "&:hover": {
+    bgcolor: "warning.dark",
   },
-  container: {
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(8),
-    display: "flex",
-  },
-  iconsWrapper: {
-    height: 120,
-  },
-  icons: {
-    display: "flex",
-  },
-  icon: {
-    width: 48,
-    height: 48,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: theme.palette.warning.main,
-    marginRight: theme.spacing(1),
-    "&:hover": {
-      backgroundColor: theme.palette.warning.dark,
-    },
-  },
-  list: {
-    margin: 0,
-    listStyle: "none",
-    padding: 0,
-  },
-  listItem: {
-    paddingTop: theme.spacing(0.5),
-    paddingBottom: theme.spacing(0.5),
-  },
-  language: {
-    marginTop: theme.spacing(1),
-    width: 150,
-  },
-}));
+};
 
 export default function AppFooter() {
-  const classes = useStyles();
   const myPolicy = 70817588
 
   return (
-    <Typography component="footer" className={classes.root}>
-      <Container className={classes.container}>
+    <Typography
+      component="footer"
+      sx={{ display: "flex", bgcolor: "secondary.light" }}
+    >
+      <Container sx={{ my: 8, display: "flex" }}>
         <Grid container spacing={5}>
-          <Grid item xs={6} sm={4} md={3}>
+          <Grid item xs={12} sm={4} md={3}>
             <Grid
               container
               direction="column"
               justifyContent="flex-end"
-              className={classes.iconsWrapper}
               spacing={2}
+              sx={{ height: 120 }}
             >
-              <Grid item className={classes.icons}>
-                <a href="https://it.linkedin.com/in/martina-muzzi-a80a94227" className={classes.icon}>
-                  <LinkedIn color="action"/>
-                </a>
-                <a
+              <Grid item sx={{ display: "flex" }}>
+                <Box component="a" href="https://it.linkedin.com/in/martina-muzzi-a80a94227" sx={iconStyle}>
+                  <LinkedIn color="action" />
+                </Box>
+                <Box
+                  component="a"
                   href="https://www.ordinepsicologier.it/it/albo/10319a-martina-muzzi"
-                  className={classes.icon}
+                  sx={iconStyle}
                 >
-                  <Gavel color="action"/>
-                </a>
+                  <Gavel color="action" />
+                </Box>
               </Grid>
               <Grid item>
                 <Copyright />
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={6} sm={4} md={2}>
+          <Grid item xs={12} sm={4} md={2}>
             <Typography variant="h6" marked="left" gutterBottom>
               Legal
             </Typography>
-            <ul className={classes.list}>
-              <li className={classes.listItem}>
+            <Box component="ul" sx={{ m: 0, listStyle: "none", p: 0 }}>
+              <Box component="li" sx={{ py: 0.5 }}>
                 <Iubenda id={myPolicy} type='privacy' styling='white'>
                   Privacy Policy
                 </Iubenda>
-              </li>
-              <li className={classes.listItem}>
+              </Box>
+              <Box component="li" sx={{ py: 0.5 }}>
                 <Iubenda id={myPolicy} type='cookie' styling='black'>
                   Cookie Policy
                 </Iubenda>
-              </li>
-              <li className={classes.listItem}>
+              </Box>
+              <Box component="li" sx={{ py: 0.5 }}>
                 <Link href="#" className="iubenda-cs-preferences-link">Aggiorna le tue preferenze</Link>
-              </li>
-            </ul>
+              </Box>
+            </Box>
           </Grid>
           <Grid item>
             <Typography variant="h6" marked="left" gutterBottom>
@@ -123,13 +95,13 @@ export default function AppFooter() {
               P.IVA 02398410001
             </Typography>*/}
             <Typography variant="subtitle1" color="textSecondary">
-              Tel. 
+              {"Tel. "} 
               <Link href="tel:+393347156936">
                 3347156936
               </Link>
             </Typography>
             <Typography variant="subtitle1" color="textSecondary">
-              Email: 
+              {"Email: "}
               <Link href="mailto:info@martinamuzzipsicologa.it">
                 info@martinamuzzipsicologa.it
               </Link>

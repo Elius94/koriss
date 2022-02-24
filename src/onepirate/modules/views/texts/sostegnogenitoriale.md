@@ -1,0 +1,1 @@
+È un tipo di intervento rivolto a coloro che affrontano difficoltà nel loro ruolo genitoriale. Il percorso di sostegno genitoriale ha lo scopo di a migliorare la relazione e la comunicazione genitori/figli, sostenendo e sviluppando le competenze già presenti all’interno del nucleo familiare.

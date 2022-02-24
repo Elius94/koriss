@@ -1,22 +1,19 @@
-import withRoot from "./modules/withRoot";
-// --- Post bootstrap -----
-import React from "react";
+import * as React from "react";
 import Typography from "./modules/components/Typography";
 import AppFooter from "./modules/views/AppFooter";
 import AppAppBar from "./modules/views/AppAppBar";
 import AppForm from "./modules/views/AppForm";
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
-import { Call, EmailRounded } from "@material-ui/icons";
-
+import withRoot from "./modules/withRoot";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
+import { Call, EmailRounded } from "@mui/icons-material";
+import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
 
 function Contact() {
-
   return (
     <React.Fragment>
       <AppAppBar />
@@ -65,4 +62,3 @@ function Contact() {
 }
 
 export default withRoot(Contact);
-

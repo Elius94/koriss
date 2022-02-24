@@ -1,138 +1,122 @@
-import React from "react";
+import * as React from "react";
 import { Theme } from "@mui/material/styles";
-import { WithStyles } from '@mui/styles';
-import withStyles from '@mui/styles/withStyles';
-import createStyles from '@mui/styles/createStyles';
+import { SxProps } from "@mui/system";
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "../components/Typography";
+import { useEffect, useState } from "react";
+import Markdown from "../components/Markdown";
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: "flex",
-      overflow: "hidden",
-      backgroundColor: theme.palette.secondary.light,
-    },
-    container: {
-      marginTop: theme.spacing(15),
-      marginBottom: theme.spacing(30),
-      display: "flex",
-      position: "relative",
-    },
-    item: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      padding: theme.spacing(0, 5),
-    },
-    image: {
-      height: 55,
-    },
-    title: {
-      marginTop: theme.spacing(5),
-      marginBottom: theme.spacing(5),
-    },
-    curvyLines: {
-      pointerEvents: "none",
-      position: "absolute",
-      top: -180,
-    },
+const item: SxProps<Theme> = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  px: 5,
+};
+
+function ProductValues() {
+  const [markdownSostegnoPsicologico, setMarkdownSostegnoPsicologico] = useState("");
+  const [markdownSostegnoGenitoriale, setMarkdownSostegnoGenitoriale] = useState("");
+  const [markdownSostegnoPerinatale, setMarkdownSostegnoPerinatale] = useState("");
+  const [markdownCorsiMassaggioInfantile, setMarkdownCorsiMassaggioInfantile] = useState("");
+
+  // https://github.com/webpack/webpack/issues/6680
+  useEffect(() => {
+    import("./texts/sostegnopsicologico.md")
+      .then((content) => fetch(content.default))
+      .then((response) => response.text())
+      .then((responseText) => setMarkdownSostegnoPsicologico(responseText));
+
+    import("./texts/sostegnogenitoriale.md")
+      .then((content) => fetch(content.default))
+      .then((response) => response.text())
+      .then((responseText) => setMarkdownSostegnoGenitoriale(responseText));
+
+    import("./texts/sostegnoperinatale.md")
+      .then((content) => fetch(content.default))
+      .then((response) => response.text())
+      .then((responseText) => setMarkdownSostegnoPerinatale(responseText));
+
+    import("./texts/massaggi.md")
+      .then((content) => fetch(content.default))
+      .then((response) => response.text())
+      .then((responseText) => setMarkdownCorsiMassaggioInfantile(responseText));
   });
 
-function ProductValues(props: WithStyles<typeof styles>) {
-  const { classes } = props;
-
   return (
-    <section className={classes.root}>
-      <Container className={classes.container}>
-        <img
+    <Box
+      component="section"
+      sx={{ display: "flex", overflow: "hidden", bgcolor: "secondary.light" }}
+    >
+      <Container sx={{ mt: 15, mb: 30, display: "flex", position: "relative" }}>
+        <Box
+          component="img"
           src="/productCurvyLines.png"
-          className={classes.curvyLines}
           alt="curvy lines"
+          sx={{ pointerEvents: "none", position: "absolute", top: -180 }}
         />
         <Grid container spacing={5}>
           <Grid item xs={12} md={6}>
-            <div className={classes.item}>
-              <img
-                className={classes.image}
-                src="/productValues1.svg"
-                alt="suitcase"
+            <Box sx={item}>
+              <Box
+                component="img"
+                src="/psychologist.png"
+                alt="psicologa"
+                sx={{ height: 55 }}
               />
-              <Typography variant="h6" className={classes.title}>
+              <Typography variant="h6" sx={{ my: 5 }}>
                 Sostegno psicologico
               </Typography>
-              <Typography variant="h5">
-                {
-                  "È un tipo di intervento rivolto a tutti coloro che vivono un momento di crisi personale o di disagio in differenti ambiti di vita. "
-                }
-                {
-                  "Scopo del sostegno psicologico è quello di sostenere o migliorare la qualità di vita dell’individuo, sviluppando e potenziando i punti di forza e le risorse personali."
-                }
-              </Typography>
-            </div>
+              <Markdown>{markdownSostegnoPsicologico}</Markdown>
+            </Box>
           </Grid>
           <Grid item xs={12} md={6}>
-            <div className={classes.item}>
-              <img
-                className={classes.image}
-                src="/productValues2.svg"
-                alt="graph"
+            <Box sx={item}>
+              <Box
+                component="img"
+                src="/family.png"
+                alt="famiglia"
+                sx={{ height: 55 }}
               />
-              <Typography variant="h6" className={classes.title}>
+              <Typography variant="h6" sx={{ my: 5 }}>
                 Sostegno genitoriale
               </Typography>
-              <Typography variant="h5">
-                {
-                  "È un tipo di intervento rivolto a coloro che affrontano difficoltà nel loro ruolo genitoriale. "
-                }
-                {
-                  "Il percorso di sostegno genitoriale ha lo scopo di a migliorare la relazione e la comunicazione genitori/figli, sostenendo e sviluppando le competenze già presenti all’interno del nucleo familiare."
-                }
-              </Typography>
-            </div>
+              <Markdown>{markdownSostegnoGenitoriale}</Markdown>
+            </Box>
           </Grid>
           <Grid item xs={12} md={6}>
-            <div className={classes.item}>
-              <img
-                className={classes.image}
-                src="/productValues3.svg"
-                alt="clock"
+            <Box sx={item}>
+              <Box
+                component="img"
+                src="/pregnant.png"
+                alt="donna incinta"
+                sx={{ height: 55 }}
               />
-              <Typography variant="h6" className={classes.title}>
+              <Typography variant="h6" sx={{ my: 5 }}>
                 Sostegno perinatale
               </Typography>
-              <Typography variant="h5">
-                {"I cambiamenti sia fisiologici che emotivi che si presentano al momento della gravidanza, del parto e della cura del neonato, possono portare i neo-genitori a vivere la nuova esperienza con difficoltà e vulnerabilità. "}
-                {"A questo proposito il sostegno perinatale si occupa di promuovere e sostenere la salute di genitori e figli con un’attenzione specifica al periodo prima e subito dopo la nascita."}
-              </Typography>
-            </div>
+              <Markdown>{markdownSostegnoPerinatale}</Markdown>
+            </Box>
           </Grid>
           <Grid item xs={12} md={6}>
-            <div className={classes.item}>
-              <img
-                className={classes.image}
-                src="/productValues3.svg"
-                alt="clock"
+            <Box sx={item}>
+              <Box
+                component="img"
+                src="/massage.png"
+                alt="massaggio infantile"
+                sx={{ height: 55 }}
               />
-              <Typography variant="h6" className={classes.title}>
+              <Typography variant="h6" sx={{ my: 5 }}>
                 Corsi di massaggio infantile
               </Typography>
-              <Typography variant="h5">
-                {"Gli studi sul massaggio infantile mostano come questo abbia numerosi benefici:"}<br />
-                <b>{"Interazione"}</b>{": il massaggio favorisce lo sviluppo di un legame sicuro genitore/bambino, il contatto precoce con entrambi i genitori, l’attivazione di tutti i sensi…"}<br />
-                <b>{"Stimolazione"}</b>{": il massaggio infantile comporta la stimolazione di sistemi come il sistema immunitario, nervoso, l’apparato digerente, la stimolazione dello sviluppo e del tono muscolare, lo sviluppo del linguaggio…"}<br />
-                <b>{"Sollievo"}</b>{": può aiutare nei casi di gas intestinali, coliche, difficoltà di evacuazione"}<br />
-                <b>{"Rilassamento"}</b>{": l’utilizzo di tecniche di massaggio può aiutare nel migliorare il sonno, ridurre i livelli di ormoni indicatori dello stress, "}
-                {"migliorare la capacità di consolarsi e può portare a benefici sia per i genitori (migliore comprensione del bambino, aumento dell’autostima, "}
-                {"aumento degli ormoni del rilassamento…) che per tutta la famiglia (coinvolgimento dei fratelli e della famiglia allargata, migliore qualità del sonno, riduzione dei conflitti)"}<br />
-              </Typography>
-            </div>
+              <Markdown>{markdownCorsiMassaggioInfantile}</Markdown>
+            </Box>
           </Grid>
         </Grid>
       </Container>
-    </section>
+    </Box>
   );
 }
 
-export default withStyles(styles)(ProductValues);
+export default ProductValues;
