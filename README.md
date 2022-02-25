@@ -7,8 +7,6 @@ The template has been optimized by [Andrew Rothbart](https://github.com/rothbart
 
 I put a workflow in which through a github action I automatically publish the site on the hosting via FTP after a release and in complete security.
 
-Translated with www.DeepL.com/Translator (free version)
-
 ## Building and running locally
 
 Once you clone this repo you can use `npm install` and the standard create-react-app scripts to run it locally:
