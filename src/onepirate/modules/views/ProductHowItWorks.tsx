@@ -8,6 +8,7 @@ import ButtonBase from "@mui/material/ButtonBase";
 import Markdown from "../components/Markdown";
 import { useEffect, useState } from "react";
 import { Parallax } from "react-scroll-parallax";
+import { isMobile } from 'react-device-detect';
 
 const ImageBackdrop = styled("div")(({ theme }) => ({
   position: "absolute",
@@ -67,6 +68,8 @@ const number = {
 
 function ProductHowItWorks() {
   const [markdown, setMarkdown] = useState("");
+  const [handWidth, setHandWidth] = useState(window.innerWidth * 0.85);
+  const [handPercentageOffset] = useState(0.9);
 
   // https://github.com/webpack/webpack/issues/6680
   useEffect(() => {
@@ -74,6 +77,11 @@ function ProductHowItWorks() {
       .then((content) => fetch(content.default))
       .then((response) => response.text())
       .then((responseText) => setMarkdown(responseText));
+
+    function handleResize() {
+      setHandWidth(window.innerWidth * 0.85);
+    }
+    window.addEventListener('resize', handleResize)
   });
 
   return (
@@ -158,25 +166,49 @@ function ProductHowItWorks() {
             </Grid>
           </Grid>
         </div>
+        {isMobile ? (
+          <Parallax
+            translateX={[`${handWidth}px`, `${handWidth - (window.innerWidth * handPercentageOffset)}px`]}
+            scale={[0.55, 0.65]}
+            rotate={[-80, -90]}
+            easing="easeInOutCubic"
+          >
+            <Box
+              component="img"
+              src="/ciao.png"
+              alt="manina"
+              style={{ width: `${handWidth}px`, position: "absolute", marginLeft: -200, opacity: 0.4, zIndex: -2 }} />
+          </Parallax>
+        ) : null}
       </Container>
-      <Parallax
-        translateX={['-400px', '50px']}
-        scale={[0.45, 0.65]}
-        rotate={[-180, 0]}
-        easing="easeInOutQuint"
-        style={{ position: "absolute", opacity: 0.7, zIndex: 0 }}
-      >
-        <Box component="img" src="/raccoon_cute.png" alt="un korino" />
-      </Parallax>
-      {/*<Parallax
-        translateX={[`${window.innerWidth - 150}px`, `${window.innerWidth - 400}px`]}
-        scale={[0.45, 0.65]}
-        rotate={[-80, -90]}
-        easing="easeInOutCubic"
-        style={{ position: "absolute", opacity: 0.6 }}
-      >
-        <Box component="img" src="/ciao.png" alt="manina" />
-      </Parallax>*/}
+      {isMobile ? null : (
+        <>
+          <Parallax
+            translateX={[`-${window.innerWidth + 80}px`, `-${window.innerWidth - 150}px`]}
+            scale={[0.45, 0.65]}
+            rotate={[-180, 0]}
+            easing="easeInOutQuint"
+          >
+            <Box
+              component="img"
+              src="/raccoon_cute.png"
+              alt="un korino"
+              style={{ position: "absolute", opacity: 0.7, zIndex: 0 }} />
+          </Parallax>
+          <Parallax
+            translateX={['300px', '-100px']}
+            scale={[0.55, 0.65]}
+            rotate={[-80, -90]}
+            easing="easeInOutCubic"
+          >
+            <Box
+              component="img"
+              src="/ciao.png"
+              alt="manina"
+              style={{ position: "absolute", marginLeft: -200, opacity: 0.6, zIndex: -2 }} />
+          </Parallax>
+        </>
+      )}
     </Box>
   );
 }

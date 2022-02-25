@@ -1,0 +1,36 @@
+name: 🚀 Deploy website on push
+  
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: windows-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+
+    - name: Use Node.js 16
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+      
+    - name: 🔨 Build Project
+      run: |
+        npm install
+        npm run build
+      with:
+        name: 'build'
+        path: '${{ github.workspace }}/build'  
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PWD }}
+        protocol: ftps
+        local-dir: 'build/'
