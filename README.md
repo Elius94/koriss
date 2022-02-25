@@ -1,15 +1,13 @@
-# onepirate-CRA-typescript
+[<img alt="Website Deployed for Free with FTP Deploy Action" src="https://img.shields.io/badge/Website deployed for free with-FTP DEPLOY ACTION-%3CCOLOR%3E?style=for-the-badge&color=2b9348">](https://github.com/SamKirkland/FTP-Deploy-Action)
 
-Thanks for stopping by! This project is a Typescript version of the [onepirate theme](https://material-ui.com/store/items/onepirate/). It uses [create-react-app](https://github.com/facebook/create-react-app) as a harness for running locally. This is intended as a quick way to play with React, Material-UI, and the onepirate theme to see if it's something you might want to use for your own work. You could also use it as an easy way to get a new project off the ground.
+# Psychologist React.js Material UI Typescript Static Website
 
-If you're interested in using the onepirate theme but want to work in Typescript, you've come to the right place :) This work has been [ported to the MUI project](https://github.com/mui-org/material-ui/pull/22295) so it should also be available there at some point.
+I decided to make opensource the site I made for my girlfriend (Psychologist). The site is made in React.js v17 and is based on the famous and stable CRA (create-react-app). The UI is completely Material, starting from the free template [onepirate theme](https://material-ui.com/store/items/onepirate/) in Typescript.
+The template has been optimized by [Andrew Rothbart](https://github.com/rothbart/onepirate-typescript) with a little code review done by me to update it to the latest versions of material ui.
 
-I made a few additional changes (besides porting everything to Typescript and adding CRA):
-* Added [react router](https://reactrouter.com/) for navigation
-* Placed all static resources in /public
-* Made some small changes to the way markdown is loaded in Privacy.tsx and Terms.tsx (in my opinion this makes the code a bit more robust/extensible)
+I put a workflow in which through a github action I automatically publish the site on the hosting via FTP after a release and in complete security.
 
-If you find this helpful feel free to drop me an [email](mailto:rothbart@gmail.com).
+Translated with www.DeepL.com/Translator (free version)
 
 ## Building and running locally
 
