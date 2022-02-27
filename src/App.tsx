@@ -6,9 +6,9 @@ import Privacy from "./onepirate/Privacy";
 import Contact from "./onepirate/Contact";
 import Terms from "./onepirate/Terms";
 import { ParallaxProvider } from 'react-scroll-parallax';
-import Seo, { SeoProps } from "./onepirate/modules/Seo";
+//import Seo, { SeoProps } from "./onepirate/modules/Seo";
 
-const _seo: SeoProps = {
+/*const _seo: SeoProps = {
   title: "Martina Muzzi &middot; Psicologa",
   description: "Psicologa specializzata in psicologia della famiglia e dei genitori, con particolare attenzione per la fase perinatale e per la fase postnatale.",
   keywords: "psicologa bologna, massaggi infantili bologna, psicologa, psicologia, psicologia della famiglia, psicologia dei genitori, psicologia perinatale, sostegno genitoriale, psicologia bologna, consulenza psicologica",
@@ -31,7 +31,7 @@ const _seo: SeoProps = {
   },
   favicon: undefined,
   manifest: undefined
-};
+};*/
 
 function App() {
   useEffect(() => {
@@ -42,7 +42,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <Seo
+      {/*<Seo
         title={_seo.title}
         description={_seo.description}
         keywords={_seo.keywords}
@@ -51,7 +51,7 @@ function App() {
         twitter={_seo.twitter}
         favicon={_seo.favicon}
         manifest={_seo.manifest}
-      />
+      />*/}
       <ParallaxProvider>
         <Router>
           <Switch>
