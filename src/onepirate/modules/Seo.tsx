@@ -69,11 +69,11 @@ const Seo = (props: SeoProps) => {
                 openGraph ? (
                     <Helmet>
                         <meta property="og:type" content={openGraph.type} />
-                        <meta property="og:url" content={openGraph.url} />
                         <meta property="og:title" content={openGraph.title} />
+                        <meta property="og:description" content={openGraph.description} />
+                        <meta property="og:url" content={openGraph.url} />
                         <meta property="og:site_name" content={openGraph.site_name} />
                         <meta property="og:image" content={openGraph.image} />
-                        <meta property="og:description" content={openGraph.description} />
                         <meta property="og:locale" content={openGraph.locale} />
                     </Helmet>
                 ) : null

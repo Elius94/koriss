@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Home from "./onepirate/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -34,6 +34,12 @@ const _seo: SeoProps = {
 };
 
 function App() {
+  useEffect(() => {
+    document.querySelectorAll("meta[data-rh]").forEach((e) => {
+      e.removeAttribute("data-rh")
+    })
+  }, []);
+
   return (
     <React.Fragment>
       <Seo
