@@ -31,3 +31,4 @@ jobs:
         password: ${{ secrets.FTP_PWD }}
         protocol: ftps
         local-dir: 'build/'
+        dangerous-clean-slate: true

@@ -34,12 +34,6 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 };*/
 
 function App() {
-  useEffect(() => {
-    document.querySelectorAll("meta[data-rh]").forEach((e) => {
-      e.removeAttribute("data-rh")
-    })
-  }, []);
-
   return (
     <React.Fragment>
       {/*<Seo
