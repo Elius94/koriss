@@ -60,7 +60,7 @@ function ProductCTA() {
                 <Box component="div" sx={number}>1.</Box>
                 <Typography variant="h5">
                   Ricevo presso lo Studio Milò, in via delle Rimembranze 9, San Lazzaro (BO),
-                  il <b>Mercoledì</b> e il <b>Venerdì</b> dalle <b>7:30</b> alle <b>12:30</b>.
+                  il <b>Martedì</b> e il <b>Mercoledì</b> dalle <b>7:30</b> alle <b>12:30</b>.
                 </Typography>
               </Box>
               <Box component="div" sx={item}>
