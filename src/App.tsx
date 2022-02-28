@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import Home from "./onepirate/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
