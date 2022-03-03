@@ -91,9 +91,9 @@ export default function AppFooter() {
             <Typography variant="subtitle1" color="textSecondary">
               Studio Milò, in via delle Rimembranze 9, San Lazzaro (BO)
             </Typography>
-            {/*<Typography variant="subtitle1" color="textSecondary">
-              P.IVA 02398410001
-            </Typography>*/}
+            <Typography variant="subtitle1" color="textSecondary">
+              P.IVA 04018341208
+            </Typography>
             <Typography variant="subtitle1" color="textSecondary">
               {"Tel. "} 
               <Link href="tel:+393347156936">
