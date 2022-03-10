@@ -39,7 +39,6 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build && npx seo-injector",
-        "postbuild": "react-snap",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
