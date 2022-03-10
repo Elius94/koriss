@@ -25,8 +25,6 @@
         "react-device-detect": "^2.1.2",
         "react-dom": "^17.0.0",
         "react-final-form": "^6.5.1",
-        "react-helmet": "^6.1.0",
-        "react-helmet-async": "^1.2.3",
         "react-iubenda-policy": "^0.1.1",
         "react-leaflet": "^3.2.5",
         "react-router": "^5.2.0",
