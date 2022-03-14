@@ -17,16 +17,17 @@ export default function ProductHero() {
         src={backgroundImage}
         alt="increase priority"
       />
-      <Typography color="inherit" align="center" variant="h2" marked="center">
+      <Typography color="inherit" align="center" component="h1" variant="h2" marked="center">
         Dott.ssa Martina Muzzi
       </Typography>
       <Typography
         color="inherit"
         align="center"
         variant="h5"
+        component="h2"
         sx={{ mb: 4, mt: { sx: 4, sm: 10 } }}
       >
-        <b>Psicologa</b> specializzata in psicologia genitoriale e familiare.
+        <b>Psicologa</b> a Bologna specializzata in psicologia genitoriale e familiare.
       </Typography>
       <Button
         color="secondary"
