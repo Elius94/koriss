@@ -9,6 +9,7 @@ import Markdown from "../components/Markdown";
 import { useEffect, useState } from "react";
 import { Parallax } from "react-scroll-parallax";
 import { isMobile } from 'react-device-detect';
+import Image from 'mui-image'
 
 const ImageBackdrop = styled("div")(({ theme }) => ({
   position: "absolute",
@@ -30,7 +31,6 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
   zIndex: 1,
   [theme.breakpoints.down("md")]: {
     width: "100% !important",
-    height: 100,
   },
   "&:hover": {
     zIndex: 2,
@@ -129,11 +129,10 @@ function ProductHowItWorks() {
                     right: 0,
                     top: 0,
                     bottom: 0,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center 40%",
-                    backgroundImage: `url(/DSC_0655.JPG)`,
                   }}
-                />
+                >
+                  <Image src="/DSC_0655.JPG" alt="Martina Muzzi Psicologa Bologna" />
+                </Box>
                 <ImageBackdrop className="imageBackdrop" />
                 <Box
                   sx={{

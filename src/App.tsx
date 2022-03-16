@@ -2,12 +2,13 @@ import React from "react";
 import "./App.css";
 import Home from "./onepirate/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Privacy from "./onepirate/Privacy";
 import Contact from "./onepirate/Contact";
-import Terms from "./onepirate/Terms";
 import { ParallaxProvider } from 'react-scroll-parallax';
+import Articles from "./onepirate/Articles";
+import NotFound404 from "./onepirate/404";
 
 function App() {
+
   return (
     <React.Fragment>
       <ParallaxProvider>
@@ -16,15 +17,13 @@ function App() {
             <Route path="/contattami">
               <Contact />
             </Route>
-            <Route path="/privacy">
-              <Privacy />
+            <Route path="/articoli">
+              <Articles />
             </Route>
-            <Route path="/terms">
-              <Terms />
-            </Route>
-            <Route path="/">
+            <Route exact path="/">
               <Home />
             </Route>
+            <Route component={NotFound404} />
           </Switch>
         </Router>
       </ParallaxProvider>

@@ -4,6 +4,7 @@ import Link from "@mui/material/Link";
 import AppBar from "../components/AppBar";
 import Toolbar from "../components/Toolbar";
 import { Link as RouterLink, useLocation } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 
 const rightLink = {
   fontSize: 16,
@@ -24,7 +25,7 @@ function AppAppBar() {
             color="inherit"
             component={RouterLink}
             to="/"
-            sx={{ fontSize: 24 }}
+            sx={{ fontSize: isMobile ? 20 : 24 }}
           >
             {"Martina Muzzi Psicologa"}
           </Link>

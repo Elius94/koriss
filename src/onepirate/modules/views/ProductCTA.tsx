@@ -72,7 +72,7 @@ function ProductCTA() {
               <Box component="div" sx={item}>
                 <Box component="div" sx={number}>3.</Box>
                 <Typography variant="h5">
-                  Direttamente a <b>domicilio</b>.<Tooltip title="Solo per i corsi di massaggio infantile"><Box component="a" sx={number}>*</Box></Tooltip>
+                  Direttamente a <b>domicilio</b>.<Tooltip title="Solo per i corsi di massaggio infantile" enterTouchDelay={0}><Box component="a" sx={number}>*</Box></Tooltip>
                 </Typography>
               </Box>
             </Box>
