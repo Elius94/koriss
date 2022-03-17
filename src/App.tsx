@@ -20,6 +20,9 @@ function App() {
             <Route path="/articoli">
               <Articles />
             </Route>
+            <Route path="/index.html">
+              <Home />
+            </Route>
             <Route exact path="/">
               <Home />
             </Route>
