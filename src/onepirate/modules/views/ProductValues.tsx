@@ -112,7 +112,7 @@ function ProductValues() {
                 Corsi di massaggio infantile
               </Typography>
               <Markdown>{markdownCorsiMassaggioInfantile}</Markdown>
-              <Link to="/articoli/benefici-massaggio-infantile">Leggi di più 🦝</Link>
+              <Link to="/articoli/benefici-massaggio-infantile">Leggi di più <span role="img" aria-label="raccoon">🦝</span></Link>
             </Box>
           </Grid>
         </Grid>
