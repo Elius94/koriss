@@ -7,6 +7,7 @@ import Container from "@mui/material/Container";
 import Typography from "../components/Typography";
 import { useEffect, useState } from "react";
 import Markdown from "../components/Markdown";
+import { Link } from "react-router-dom";
 
 const item: SxProps<Theme> = {
   display: "flex",
@@ -111,6 +112,7 @@ function ProductValues() {
                 Corsi di massaggio infantile
               </Typography>
               <Markdown>{markdownCorsiMassaggioInfantile}</Markdown>
+              <Link to="/articoli/benefici-massaggio-infantile">Leggi di più 🦝</Link>
             </Box>
           </Grid>
         </Grid>
