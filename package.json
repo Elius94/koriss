@@ -1,6 +1,6 @@
 {
     "name": "koriss",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "private": false,
     "dependencies": {
         "@emailjs/browser": "^3.4.0",
