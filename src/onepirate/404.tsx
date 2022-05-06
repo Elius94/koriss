@@ -2,16 +2,15 @@ import React from "react";
 import AppAppBar from "./modules/views/AppAppBar";
 import AppFooter from "./modules/views/AppFooter";
 import withRoot from "./modules/withRoot";
-import { MouseParallaxContainer, MouseParallaxChild } from "react-parallax-mouse";
-import { isMobile } from 'react-device-detect';
 import { ParallaxBanner } from "react-scroll-parallax";
 import { BannerLayer } from "react-scroll-parallax/dist/components/ParallaxBanner/types";
 import "./404.css";
+import { isMobile } from "react-device-detect";
 
 export const AdvancedBannerTop = () => {
     const background: BannerLayer = {
         image: "/EL_04138_cielo.jpg",
-        translateY: [10, 60],
+        translateY: [10, 40],
         opacity: [1, 0.3],
         scale: [1.05, 1, "easeOutCubic"],
         shouldAlwaysCompleteAnimation: true
@@ -25,8 +24,8 @@ export const AdvancedBannerTop = () => {
     };
 
     const korino: BannerLayer = {
-        translateY: [30, 33],
-        translateX: [5, -10],
+        translateY: isMobile? [30, 33] : [30, 53],
+        translateX: isMobile? [5, -10] : [5, -5],
         scale: [0.12, 0.18, "easeOutCubic"],
         shouldAlwaysCompleteAnimation: true,
         expanded: false,
@@ -38,8 +37,8 @@ export const AdvancedBannerTop = () => {
     };
 
     const cartello: BannerLayer = {
-        translateY: [10, 13],
-        translateX: [-30, -25],
+        translateY: isMobile? [10, 13] : [10, 33],
+        translateX: isMobile? [-30, -25] : [-30, -15],
         scale: [0.1, 0.2, "easeOutCubic"],
         shouldAlwaysCompleteAnimation: true,
         expanded: false,
@@ -69,97 +68,7 @@ function NotFound404() {
     return (
         <React.Fragment>
             <AppAppBar />
-            {isMobile ? (
                 <AdvancedBannerTop />
-            ) : (
-                <div
-                    style={{
-                        height: "500px",
-                        width: "100%",
-                        minWidth: "1200px",
-                        background: "#01011A",
-                        color: "#fff",
-                        overflow: "hidden",
-                    }}>
-                    <div
-                        style={{
-                            height: "100%",
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "center"
-                        }}
-                    >
-                        <MouseParallaxContainer
-                            className="parallax"
-                            containerStyles={{
-                                width: "100%",
-                                display: "grid",
-                                gridTemplateColumns: "auto auto auto auto auto"
-                            }}
-                            resetOnLeave
-                        >
-                            <MouseParallaxChild
-                                factorX={0.03}
-                                factorY={0.01}
-                                updateStyles={{
-                                    background: "url(/EL_03496.jpg)",
-                                    backgroundPositionY: "80%",
-                                    transform: "scale(1.2)",
-                                    position: "absolute",
-                                    filter: "blur(1px) brightness(80%)",
-                                    backgroundSize: "cover",
-                                    backgroundRepeat: "no-repeat",
-                                    width: "100%",
-                                    height: "100%",
-                                    backfaceVisibility: "hidden",
-                                    boxShadow: "inset 0px 0px 150px black"
-                                }}
-                            >
-                            </MouseParallaxChild>
-                            <MouseParallaxChild
-                                factorX={0.08}
-                                factorY={0.05}
-                                updateStyles={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    width: "auto",
-                                    height: "61%"
-                                }}
-                            >
-                                <img
-                                    src="/raccoon_cute.png"
-                                    alt="Cute Raccoon"
-                                    height={"40%"}
-                                    style={{
-                                        margin: "5% 8% 300px",
-                                    }}
-                                />
-                            </MouseParallaxChild>
-                            <MouseParallaxChild
-                                factorX={0.05}
-                                factorY={0.03}
-                                updateStyles={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    width: "auto",
-                                    height: "52%"
-                                }}
-                            >
-                                <img
-                                    src="/sign-404.png"
-                                    alt="Road Sign"
-                                    height={"30%"}
-                                    style={{
-                                        margin: "5% 8% 300px",
-                                    }}
-                                />
-                            </MouseParallaxChild>
-                        </MouseParallaxContainer>
-                    </div>
-                </div>
-            )}
             <AppFooter />
         </React.Fragment >
     )
