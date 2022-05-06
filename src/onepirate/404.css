@@ -19,6 +19,7 @@
 
 .full {
     height: 70vh;
+    max-height: 1800px;
 }
 
 .center {

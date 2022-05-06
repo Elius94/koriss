@@ -1,14 +1,17 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import * as ReactDOMClient from 'react-dom/client';
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render(
+const rootElement : HTMLElement | null = document.getElementById("root");
+
+const root = ReactDOMClient.createRoot(rootElement? rootElement : document.createElement("div"));
+
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
