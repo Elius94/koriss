@@ -1,71 +1,23 @@
 import * as React from "react";
-import ReactMarkdown from "markdown-to-jsx";
-import { Theme } from "@mui/material/styles";
-import { withStyles, WithStyles } from "@mui/styles";
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
-const styles = (theme: Theme) => ({
-  listItem: {
-    marginTop: theme.spacing(1),
-  },
-});
-
-const options = {
-  overrides: {
-    h1: {
-      component: Typography,
-      props: {
-        gutterBottom: true,
-        variant: "h1",
-      },
-    },
-    h2: {
-      component: Typography,
-      props: { gutterBottom: true, variant: "h2" },
-    },
-    h3: {
-      component: Typography,
-      props: { gutterBottom: true, variant: "subtitle1" },
-    },
-    h4: {
-      component: Typography,
-      props: {
-        gutterBottom: true,
-        variant: "caption",
-        paragraph: true,
-      },
-    },
-    h5: {
-      component: Typography,
-      props: { paragraph: true, variant: "h5" },
-    },
-    h6: {
-      component: Typography,
-      props: { paragraph: true, variant: "h6" },
-    }, 
-    p: {
-      component: Typography,
-      props: { paragraph: true, variant: "h5" },
-    },
-    a: { component: Link },
-    span: { 
-      component: Typography,
-      props: { paragraph: true, variant: "h5" },
-    },
-    li: {
-      component: withStyles(styles)((props: WithStyles<typeof styles>) => {
-        const { classes, ...other } = props;
-        return (
-          <li className={classes.listItem}>
-            <Typography component="span" {...other} />
-          </li>
-        );
-      }),
-    },
-  },
+const components = {
+  h1: ({ node, ...props }: any) => <Typography gutterBottom={true} variant="h1" {...props}>{props.children}</Typography>,
+  h2: ({ node, ...props }: any) => <Typography gutterBottom={true} variant="h2" {...props}>{props.children}</Typography>,
+  h3: ({ node, ...props }: any) => <Typography gutterBottom={true} variant="subtitle1" {...props}>{props.children}</Typography>,
+  h4: ({ node, ...props }: any) => <Typography paragraph={true} gutterBottom={true} variant="caption" {...props}>{props.children}</Typography>,
+  h5: ({ node, ...props }: any) => <Typography paragraph={true} variant="h5" {...props}>{props.children}</Typography>,
+  h6: ({ node, ...props }: any) => <Typography paragraph={true} variant="h6" {...props}>{props.children}</Typography>,
+  p: ({ node, ...props }: any) => <Typography paragraph={true} variant="h5" {...props}>{props.children}</Typography>,
+  a: ({ node, ...props }: any) => <Link {...props}>{props.children}</Link>,
+  span: ({ node, ...props }: any) => <Typography paragraph={true} variant="h5" {...props}>{props.children}</Typography>,
+  li: ({ node, ...props }: any) => <li {...props}>{props.children}</li>,
 };
 
 export default function Markdown(props: any) {
-  return <ReactMarkdown options={options} {...props} />;
+  return <ReactMarkdown components={components} children={props.children} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} />;
 }
